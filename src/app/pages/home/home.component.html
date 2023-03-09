@@ -1,0 +1,20 @@
+<div class="container">
+    <app-header></app-header>
+    <div class="table">
+        <p-table [value]="teams" selectionMode="single" dataKey="id"
+            (onRowSelect)="onRowSelect($event)">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-team>
+                <tr [pSelectableRow]="team">
+                    <td>{{team.id}}</td>
+                    <td>{{team.name}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
