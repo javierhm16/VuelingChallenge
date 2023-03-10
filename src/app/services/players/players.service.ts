@@ -13,6 +13,12 @@ export class PlayersService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * It takes an id as a parameter, then it gets the players from the API, then it maps the response to
+   * a new array of players, then it returns the new array of players
+   * @param {number} id - number - the id of the team
+   * @returns The players of the team with the id passed as a parameter.
+   */
   getTeamPlayers(id: number) {
     return this.http.get<Player[]>(`${url}/players`).pipe(
       map(

@@ -8,9 +8,9 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [HeaderComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -20,4 +20,11 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render a Logo of LaLiga', () => {
+    const compiled = fixture.debugElement.nativeElement;
+
+    console.log(compiled.querySelector('img')['src']);
+    expect(compiled.querySelector('img')['src']).toContain('https://assets.laliga.com/assets/logos/laliga-h/laliga-h-1200x1200.png');
+  })
 });

@@ -25,10 +25,18 @@ export class PlayersComponent implements OnInit {
     this.getTeamPlayers();
   }
 
+  /**
+   * It returns the value of the id parameter in the URL as a number
+   * @returns The id parameter from the route.
+   */
   get idParam() {
     return Number(this.activatedRoute.snapshot.params['id']);
   } 
 
+  /**
+   * The function gets the players for a team by calling the getTeamPlayers() function in the player
+   * service
+   */
   getTeamPlayers() {
     this.playerSvc.getTeamPlayers(Number(this.idParam)).subscribe(
       res => {
@@ -39,6 +47,12 @@ export class PlayersComponent implements OnInit {
   }
 
 
+  /**
+   * The function is called when a row is selected. It sets the playerName, playerPicture and
+   * playerValue variables to the values of the selected row. It also sets the displayResponsive
+   * variable to true, which will display the responsive dialog
+   * @param event - The event object
+   */
   onRowSelect(event) {
     this.playerName = event.data.name;
     this.playerPicture = event.data.picture;

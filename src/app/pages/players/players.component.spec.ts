@@ -22,15 +22,15 @@ describe('PlayersComponent', () => {
   };
 
   beforeEach(async () => {
-    component = new PlayersComponent(service, route);
     TestBed.configureTestingModule({
       declarations: [PlayersComponent],
-      providers: [{ provide: ActivatedRoute, useValue: fakeActivatedRoute }, PlayersService],
+      providers: [PlayersService, { provide: ActivatedRoute, useValue: fakeActivatedRoute }],
       imports: [HttpClientModule, PagesModule]
     })
 
     fixture = TestBed.createComponent(PlayersComponent);
     component = fixture.componentInstance;
+    component = new PlayersComponent(service, route);
     fixture.detectChanges();
   });
 
@@ -47,4 +47,14 @@ describe('PlayersComponent', () => {
 
     expect(spy).toHaveBeenCalled();
   });
+
+  xit('should call getTeamPlayer function in service', () => {
+    const spy = spyOn(service, 'getTeamPlayers').and.callFake(() => {
+      return empty();
+    });
+
+    component.getTeamPlayers();
+
+    expect(spy).toHaveBeenCalled();
+  })
 });

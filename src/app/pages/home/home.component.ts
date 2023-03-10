@@ -21,6 +21,12 @@ export class HomeComponent implements OnInit {
     this.getTeams();
   }
 
+  /**
+   * The getTeams() function calls the getTeams() function in the team service, which returns an
+   * observable of type Team[]. The subscribe() function is called on the observable, and the res
+   * parameter is assigned to the teams property of the component. The teams property is then sorted by
+   * id
+   */
   getTeams() {
     this.teamSvc.getTeams().subscribe(
       res => {
@@ -31,6 +37,11 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  /**
+   * When a row is selected, the team name is set to the name of the team that was selected and the
+   * router navigates to the players route with the id of the team that was selected
+   * @param event - The event object that was triggered.
+   */
   onRowSelect(event) {
     this.teamName = event.data.name;
     this.router.navigateByUrl(`/players/${event.data.id}`);

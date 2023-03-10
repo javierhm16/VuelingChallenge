@@ -12,6 +12,10 @@ export class TeamsService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * The function returns an observable of type Teams[] (an array of Teams objects) from the url /teams
+   * @returns An array of teams
+   */
   getTeams() {
     return this.http.get<Teams[]>(`${url}/teams`);
   }
