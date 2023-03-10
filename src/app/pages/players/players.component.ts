@@ -25,12 +25,14 @@ export class PlayersComponent implements OnInit {
     this.getTeamPlayers();
   }
 
+  get idParam() {
+    return Number(this.activatedRoute.snapshot.params['id']);
+  } 
+
   getTeamPlayers() {
-    const { id } = this.activatedRoute.snapshot.params;
-    this.playerSvc.getTeamPlayers(Number(id)).subscribe(
+    this.playerSvc.getTeamPlayers(Number(this.idParam)).subscribe(
       res => {
         this.players = res;
-        console.log(res);
       },
       err => console.error(err)
     )

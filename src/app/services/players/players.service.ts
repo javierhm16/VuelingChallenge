@@ -16,7 +16,7 @@ export class PlayersService {
   getTeamPlayers(id: number) {
     return this.http.get<Player[]>(`${url}/players`).pipe(
       map(
-        (res: any) => {
+        (res: Player[]) => {
           let name;
           let picture;
           let id_team;
