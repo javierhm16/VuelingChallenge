@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Teams } from 'src/app/interfaces/teams.interface';
 import { environment } from 'src/environments/environment.prod';
-
-const url = environment.url;
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamsService {
+
+  private pathTeams = '/teams';
 
   constructor(private http: HttpClient) { }
 
@@ -16,8 +17,8 @@ export class TeamsService {
    * The function returns an observable of type Teams[] (an array of Teams objects) from the url /teams
    * @returns An array of teams
    */
-  getTeams() {
-    return this.http.get<Teams[]>(`${url}/teams`);
+  public getTeams(): Observable<Teams[]> {
+    return this.http.get<Teams[]>(environment.url + this.pathTeams);
   }
 
 }

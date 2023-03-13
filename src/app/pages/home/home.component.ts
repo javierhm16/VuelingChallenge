@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Table } from 'primeng/table';
 import { Teams } from 'src/app/interfaces/teams.interface';
 import { TeamsService } from 'src/app/services/teams/teams.service';
 
@@ -11,9 +10,9 @@ import { TeamsService } from 'src/app/services/teams/teams.service';
 })
 export class HomeComponent implements OnInit {
 
-  teamName: string = '';
-  teams: Teams[] = [];
-  selectedProduct2: Teams;
+  public teamName: string = '';
+  public teams: Teams[] = [];
+  public selectedProduct2: Teams;
 
   constructor(private teamSvc: TeamsService, private router: Router) { }
 
@@ -27,7 +26,7 @@ export class HomeComponent implements OnInit {
    * parameter is assigned to the teams property of the component. The teams property is then sorted by
    * id
    */
-  getTeams() {
+  public getTeams(): void {
     this.teamSvc.getTeams().subscribe(
       res => {
         this.teams = res;
@@ -42,7 +41,7 @@ export class HomeComponent implements OnInit {
    * router navigates to the players route with the id of the team that was selected
    * @param event - The event object that was triggered.
    */
-  onRowSelect(event) {
+  public onRowSelect(event): void {
     this.teamName = event.data.name;
     this.router.navigateByUrl(`/players/${event.data.id}`);
   }

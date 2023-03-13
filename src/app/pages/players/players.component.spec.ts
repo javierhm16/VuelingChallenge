@@ -1,9 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { from, of, empty } from 'rxjs';
+import { empty } from 'rxjs';
 import { PlayersService } from 'src/app/services/players/players.service';
-import { Player } from '../../interfaces/players.interface'
 import { PagesModule } from '../pages.module';
 
 import { PlayersComponent } from './players.component';

@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Player } from 'src/app/interfaces/players.interface';
 import { environment } from 'src/environments/environment.prod';
-
-const url = environment.url;
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayersService {
+
+  private pathPlayers = '/players'
 
   constructor(private http: HttpClient) { }
 
@@ -19,8 +19,8 @@ export class PlayersService {
    * @param {number} id - number - the id of the team
    * @returns The players of the team with the id passed as a parameter.
    */
-  getTeamPlayers(id: number) {
-    return this.http.get<Player[]>(`${url}/players`).pipe(
+  public getTeamPlayers(id: number): Observable<Player[]> {
+    return this.http.get<Player[]>(environment.url + this.pathPlayers).pipe(
       map(
         (res: Player[]) => {
           let name;
@@ -29,7 +29,7 @@ export class PlayersService {
           let value;
           let players: Player[] = [];
           for (let i of res) {
-            if(i.id_team === id) {
+            if (i.id_team === id) {
               name = i.name;
               picture = i.picture;
               id_team = i.id_team;
